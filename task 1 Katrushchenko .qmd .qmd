@@ -1,0 +1,188 @@
+---
+title: "Task1"
+author: "Sofia"
+date: "10/01/2024"
+format:
+  html:
+    embed-resources: true
+editor: source
+---
+
+# 1.1Atomic Types
+Question description
+
+Create the following variables related to your chosen object:
+- 4 numeric values (e.g., population, temperature, size, rating)  
+- 3 integer values (e.g., number of moons, buildings, inhabitants)  
+- 2 logical values (e.g., has_water, is_inhabited)  
+- 3 character values (e.g., name, region, category)
+
+```{r}
+# code for solving task
+#integer 
+population <- 39800
+area <- 98  # square kilometers
+districts <- 4
+
+#charakter 
+city_name <- "Zvolen"
+city_old_name <- "Zolna"
+region <- "Banska Bystrica Region" 
+
+#numeric
+average_temperature <- 10.1       # °C
+city_budget_million <- 142.3      # million euros
+annual_rainfall_mm <- 720.5       # mm per year
+green_area_percent <- 36.8        # % of city covered by greenery
+
+#logical 
+has_hospital <- TRUE
+is_capital <- FALSE
+```
+
+# 1.2Vectors
+Create three different vectors:
+
+1. Numeric vector combining all your numeric and integer variables.  
+   *(Use c().)*
+
+2. Sequence vector from any number between 10–50 to 100, Choose step between 2 and 10.  
+   *(Use seq() or :.)*
+
+3. Logical vector of length 10 with random TRUE/FALSE values using sample().
+
+```{r}
+#_code for solving task
+# 1. Numeric vector
+numeric_vector <- c(population, area, districts, average_temperature,
+                    city_budget_million, annual_rainfall_mm, green_area_percent)
+numeric_vector
+
+
+# 2. Sequence vector
+sequence_vector <- seq(5, 100, by = 20)
+sequence_vector
+
+
+
+
+# 3. Logical vector
+logical_vec <- sample(c(TRUE, FALSE), size = 10, replace = TRUE)
+logical_vec### 1.3 MATRIX
+
+```
+
+
+### 1.3 MATRIX
+Create a 3×3 matrix with random numbers between -50 and 50  
+(using sample() or runif()), and name its rows and columns according to your theme.
+
+```{r}
+#_code for solving task
+set.seed(2024)
+my_matrix <- matrix(sample(-50:50, 9, replace = TRUE), nrow = 3, ncol = 3)
+rownames(my_matrix) <- c("Center", "East", "West")
+colnames(my_matrix) <- c("Economy", "Education", "Tourism")
+my_matrix
+
+rowMeans(my_matrix)
+colMeans(my_matrix)# 1.4 LIST
+```
+# 1.4 LIST
+Create a list that combines all your previous objects:  
+atomic variables, vectors, and matrix.
+Add one extra element — a short description of your universe as a string.
+```{r}
+#_code for solving task
+zvolen_list <- list(
+  city_name = city_name,
+  region = region,
+  population = population,
+  numeric_vector = numeric_vector,
+  sequence_vector = sequence_vector,
+  logical_vec = logical_vec,
+  matrix = my_matrix,
+  description = "This is the data universe of Zvolen a historic Slovak city full of green spaces, education, and culture."
+)
+zvolen_list
+```
+
+{r}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 1.5 Factor
+Create a factor variable representing categories within your universe, e.g.:
+
+
+
+
+
+
+
+
+
+
+
+
+- "low", "medium", "high"  
+- "infant", "child", "adult"  
+- "poor", "average", "rich"
+
+Make sure you have at least 5 observations total.  
+Then use table() to show how many objects fall into each category.
+```{r}
+#code_for solving task
+development_stage <- factor(c("low", "medium", "high", "medium", "high", "low", "medium"))
+table(development_stage)# 1.6 Data Frame
+```
+
+# 1.6 Data Frame
+Create a data frame related to your object that includes:
+
+1. 5–8 observations (rows)  
+2. At least 3 columns of different data types  
+   (e.g., name, numeric value, logical flag, category)
+   dka
+   dsds
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+```{r}
+#_code for solving task
+zvolen_df <- data.frame(
+  District = c("Center", "East", "West", "North", "South"),
+  Population = c(12000, 9500, 7800, 5500, 7000),
+  Has_Schools = c(TRUE, TRUE, TRUE, FALSE, TRUE),
+  Area_km2 = c(10.2, 15.3, 8.7, 12.5, 11.0),
+  Category = factor(c("urban", "residential", "residential", "suburban", "mixed"))
+)
+
+colnames(zvolen_df) <- c("District_Name", "Population_Size", "Has_Schools", "Area_km2", "Category")
+
+str(zvolen_df)
+summary(zvolen_df)
+
+zvolen_df$Density <- zvolen_df$Population_Size / zvolen_df$Area_km2
+zvolen_df
+```
