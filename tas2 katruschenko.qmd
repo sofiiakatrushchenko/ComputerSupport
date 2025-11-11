@@ -1,0 +1,353 @@
+---
+title: "Task1"
+author: "Sofia"
+date: "10/01/2024"
+format:
+  html:
+    embed-resources: true
+editor: source
+---
+
+# 1.1Atomic Types
+Question description
+
+Create the following variables related to your chosen object:
+- 4 numeric values (e.g., population, temperature, size, rating)  
+- 3 integer values (e.g., number of moons, buildings, inhabitants)  
+- 2 logical values (e.g., has_water, is_inhabited)  
+- 3 character values (e.g., name, region, category)
+
+```{r}
+# code for solving task
+#integer 
+population <- 39800
+area <- 98  # square kilometers
+districts <- 4
+
+#charakter 
+city_name <- "Zvolen"
+city_old_name <- "Zolna"
+region <- "Banska Bystrica Region" 
+
+#numeric
+average_temperature <- 10.1       # °C
+city_budget_million <- 142.3      # million euros
+annual_rainfall_mm <- 720.5       # mm per year
+green_area_percent <- 36.8        # % of city covered by greenery
+
+#logical 
+has_hospital <- TRUE
+is_capital <- FALSE
+```
+
+
+
+# 1.2Vectors
+Create three different vectors:
+
+1. **Numeric vector** combining all your numeric and integer variables.  
+   *(Use `c()`.)*
+
+2. **Sequence vector** from any number between 10–50 to 100, Choose step between 2 and 10.  
+   *(Use `seq()` or `:`.)*
+
+3. **Logical vector** of length 10 with random `TRUE`/`FALSE` values using `sample()`.
+
+```{r}
+#_code for solving task
+# 1. Numeric vector
+numeric_vector <- c(population, area, districts, average_temperature,
+                    city_budget_million, annual_rainfall_mm, green_area_percent)
+numeric_vector
+
+
+# 2. Sequence vector
+sequence_vector <- seq(5, 100, by = 20)
+sequence_vector
+
+
+
+
+# 3. Logical vector
+logical_vec <- sample(c(TRUE, FALSE), size = 10, replace = TRUE)
+logical_vec
+
+```
+### 1.3 MATRIX
+Create a **3×3 matrix** with random numbers between **-50 and 50**  
+(using `sample()` or `runif()`), and name its **rows and columns** according to your theme.
+
+
+
+
+
+```{r}
+#_code for solving task
+set.seed(2024)
+my_matrix <- matrix(sample(-50:50, 9, replace = TRUE), nrow = 3, ncol = 3)
+rownames(my_matrix) <- c("Center", "East", "West")
+colnames(my_matrix) <- c("Economy", "Education", "Tourism")
+my_matrix
+
+rowMeans(my_matrix)
+colMeans(my_matrix)
+
+```
+# 1.4 LIST
+Create a **list** that combines all your previous objects:  
+atomic variables, vectors, and matrix.
+Add one extra element — a short **description** of your universe as a string.
+```{r}
+#_code for solving task
+zvolen_list <- list(
+  city_name = city_name,
+  region = region,
+  population = population,
+  numeric_vector = numeric_vector,
+  sequence_vector = sequence_vector,
+  logical_vec = logical_vec,
+  matrix = my_matrix,
+  description = "This is the data universe of Zvolen a historic Slovak city full of green spaces, education, and culture."
+)
+zvolen_list
+
+```
+
+
+
+```{r}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 1.5 Factor
+Create a **factor variable** representing categories within your universe, e.g.:
+
+
+
+
+
+
+
+
+
+
+
+
+- `"low"`, `"medium"`, `"high"`  
+- `"infant"`, `"child"`, `"adult"`  
+- `"poor"`, `"average"`, `"rich"`
+
+Make sure you have **at least 5 observations** total.  
+Then use `table()` to show how many objects fall into each category.
+```{r}
+#code_for solving task
+development_stage <- factor(c("low", "medium", "high", "medium", "high", "low", "medium"))
+table(development_stage)
+```
+# 1.6 Data Frame
+Create a **data frame** related to your object that includes:
+
+1. **5–8 observations** (rows)  
+2. **At least 3 columns** of different data types  
+   (e.g., name, numeric value, logical flag, category)
+   dka
+   dsds
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+```{r}
+#_code for solving task
+zvolen_df <- data.frame(
+  District = c("Center", "East", "West", "North", "South"),
+  Population = c(12000, 9500, 7800, 5500, 7000),
+  Has_Schools = c(TRUE, TRUE, TRUE, FALSE, TRUE),
+  Area_km2 = c(10.2, 15.3, 8.7, 12.5, 11.0),
+  Category = factor(c("urban", "residential", "residential", "suburban", "mixed"))
+)
+
+colnames(zvolen_df) <- c("District_Name", "Population_Size", "Has_Schools", "Area_km2", "Category")
+
+str(zvolen_df)
+summary(zvolen_df)
+
+zvolen_df$Density <- zvolen_df$Population_Size / zvolen_df$Area_km2
+zvolen_df
+```
+
+## Task 2: Subsetting & Missing Data in Your Mini-Universe
+
+### 2.1. Querying Vectors
+
+Let's start with the vectors you created in **Task 1**.
+
+2.1.1. From your **Sequence vector** (the one with all your numbers):
+
+- Select and print the 3rd element.
+- Select and print elements 2 through 5.
+- Select and print all values that are greater than 20 (or another number that makes sense for your data).
+
+```{r}
+# Select and print the 3rd element
+sequence_vector[3]
+
+# Select and print elements 2 through 5
+sequence_vector[2:5]
+
+# Select and print all values greater than 20
+sequence_vector[sequence_vector > 20]
+
+```
+
+2.1.2. From your **Logical vector**:
+
+- Select and print only the TRUE values. (Hint: `your_vector[your_vector]`).
+- Use `which()` to get the indices (positions) of all the `TRUE` values.
+
+```{r}
+# Select and print only the TRUE values
+logical_vec[logical_vec]
+
+# Get indices (positions) of all TRUE values
+which(logical_vec)
+```
+
+### 2.2. Querying Your "Universe" List
+
+Use your main list from **Task 1**.
+
+- Access and print the **description** string using the `$` operator
+- Access and print your **3x3 matrix** using double brackets `[[ ]]`.
+- Access and print the **second element** from your **vector element** within the list. (This will be a "list-within-a-list" access).
+
+```{r}
+# Access and print the description string using $
+zvolen_list$description
+
+# Access and print your 3x3 matrix using double brackets [[ ]]
+zvolen_list[[7]]   # or zvolen_list$matrix
+
+# Access and print the 2nd element from your numeric vector inside the list
+zvolen_list$numeric_vector[2]
+
+```
+
+### 2.3. Investigating Your Data Frame
+
+Use the **data frame** you created in **Task 1**.
+
+- Print the **first 3 rows**. (Use `head()`.)
+- Print the value from the **4th row, 1st column**.
+- Print only the column that contains your logical values (e.g., `is_habitable`) as a vector.
+
+**Logical Subsetting**: Create a new data frame `df_subset` that contains only the rows that meet a specific logical condition.
+
+```{r}
+# Print the first 3 rows
+head(zvolen_df, 3)
+
+# Print the value from the 4th row, 1st column
+zvolen_df[4, 1]
+
+# Print only the logical column (Has_Schools)
+zvolen_df$Has_Schools
+
+
+# Logical Subsetting: keep only districts with population > 8000
+zvolen_subset <- zvolen_df[zvolen_df$Population_Size > 8000, ]
+zvolen_subset
+
+# %in% Subsetting: select districts with "urban" or "residential" category
+zvolen_subset_2 <- zvolen_df[zvolen_df$Category %in% c("urban", "residential"), ]
+zvolen_subset_2
+
+```
+
+### 2.4. Handling "Corrupted" Data (`NA`)
+
+Create a copy of your original data frame (e.g., `df_corrupted <- your_df`).
+
+**Introduce 3 `NA`s** into your df_corrupted at specific locations.
+
+- Example: `df_corrupted[2, 3] <- NA`
+
+**Find `NAs`**:
+
+- Use `sum(is.na(df_corrupted)`) to find the **total number** of missing values.
+- Use `colSums(is.na(df_corrupted))` to see how many `NA`s are in **each column**.
+
+**Calculate with `NA`s**:
+
+- Calculate the `mean()` of the numeric column where you added an `NA`.
+
+**Filter `NA`s**:
+
+- Use `na.omit(df_corrupted)` to create a new, "clean" data frame that contains only the complete rows.
+
+```{r}
+# Create a copy of your original data frame
+zvolen_corrupted <- zvolen_df
+
+# Introduce 3 NA values in specific locations
+zvolen_corrupted[2, 2] <- NA     # Population_Size for East
+zvolen_corrupted[4, 3] <- NA     # Has_Schools for North
+zvolen_corrupted[5, 5] <- NA     # Category for South
+
+# Find total number of missing values
+sum(is.na(zvolen_corrupted))
+
+# Find how many NAs per column
+colSums(is.na(zvolen_corrupted))
+
+# Calculate mean of Population_Size (with NAs)
+mean(zvolen_corrupted$Population_Size)
+
+# Calculate mean ignoring NAs
+mean(zvolen_corrupted$Population_Size, na.rm = TRUE)
+
+# Remove rows with NAs
+zvolen_clean <- na.omit(zvolen_corrupted)
+zvolen_clean
+```
+
+### 2.5. Bonus Challenge: `which()`
+
+Use `which.max()` or `which.min()` to find the **row number** (index) of the observation with the highest or lowest value in one of your numeric columns.
+
+Use that index to print the row with that observation.
+
+- Example: `highest_pop_index <- which.max(your_df$population)`
+- Example: `your_df[highest_pop_index, ]`
+
+```{r}
+# Find the district with the highest population
+highest_pop_index <- which.max(zvolen_df$Population_Size)
+zvolen_df[highest_pop_index, ]
+
+# Find the district with the lowest population
+lowest_pop_index <- which.min(zvolen_df$Population_Size)
+zvolen_df[lowest_pop_index, ]
+```
+
